@@ -51,4 +51,9 @@ public class Game {
         }
         client.sendMessage(new Message(null, client.getUserName(), Type.EXIT, null, 0, null));
     }
+    
+    public void resetGame(){
+        hand.resetHand();
+        playing = false;
+    }
 }
