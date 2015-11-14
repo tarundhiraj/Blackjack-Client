@@ -35,4 +35,14 @@ public class Hand {
     public HashMap<Integer, Card> getCards(){
         return cards;
     }
+    
+    public void resetHand(){
+        cards.clear();
+        cardsInHand = 0;
+        valueOfHand = 0;
+    }
+    
+    public void handleResult(){
+        
+    }
 }
