@@ -120,8 +120,18 @@ public class GameplayPage extends javax.swing.JFrame {
         );
 
         hitButton.setText("HIT");
+        hitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hitButtonActionPerformed(evt);
+            }
+        });
 
         foldButton.setText("FOLD");
+        foldButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                foldButtonActionPerformed(evt);
+            }
+        });
 
         quit.setText("Quit");
         quit.addActionListener(new java.awt.event.ActionListener() {
@@ -183,6 +193,19 @@ public class GameplayPage extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_quitActionPerformed
+
+    private void hitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hitButtonActionPerformed
+        // TODO add your handling code here:
+        View.getClient().getGame().hit();
+    }//GEN-LAST:event_hitButtonActionPerformed
+
+    private void foldButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_foldButtonActionPerformed
+        // TODO add your handling code here:
+        View.getClient().getGame().fold();
+        this.setVisible(false);
+        View.getFetchingResult().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_foldButtonActionPerformed
 
     
     

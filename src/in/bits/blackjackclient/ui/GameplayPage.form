@@ -194,11 +194,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="HIT"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="hitButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="foldButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="FOLD"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="foldButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="quit">
       <Properties>

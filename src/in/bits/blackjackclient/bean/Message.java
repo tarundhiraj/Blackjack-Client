@@ -8,9 +8,9 @@ public class Message {
     private Type type;
     private String receiver;
     private int score;
-    private HashMap<String, String> result;
+    private HashMap<String, Result> result;
     
-    public Message(Card card, String sender, Type type, String receiver, int score, HashMap<String, String> result){
+    public Message(Card card, String sender, Type type, String receiver, int score, HashMap<String, Result> result){
         this.card = card;
         this.sender = sender;
         this.type = type;
@@ -92,14 +92,14 @@ public class Message {
     /**
      * @return the result
      */
-    public HashMap<String, String> getResult() {
+    public HashMap<String, Result> getResult() {
         return result;
     }
 
     /**
      * @param result the result to set
      */
-    public void setResult(HashMap<String, String> result) {
+    public void setResult(HashMap<String, Result> result) {
         this.result = result;
     }
     

@@ -6,6 +6,7 @@
 package in.bits.blackjackclient.ui;
 
 import in.bits.blackjackclient.bean.Message;
+import in.bits.blackjackclient.bean.Result;
 import in.bits.blackjackclient.controller.View;
 import java.util.HashMap;
 import java.util.Map;
@@ -152,13 +153,13 @@ public class ResultPage extends javax.swing.JFrame {
         
     }//GEN-LAST:event_playAgainActionPerformed
 
-   public void setResult(HashMap<String,String> resultMap){
+   public void setResult(HashMap<String,Result> resultMap){
        DefaultTableModel model = new DefaultTableModel();
-       for(Map.Entry<String,String> entry : resultMap.entrySet()){
+       for(Map.Entry<String,Result> entry : resultMap.entrySet()){
            String col1 = entry.getKey();
-           String temp[] = entry.getValue().split(",");
-           String col2 = temp[0];
-           String col3 = temp[1];
+           Result result = entry.getValue();
+           String col2 = ""+result.getScore();
+           String col3 = result.getResult();
            model.addRow(new String[]{col1,col2,col3});
        }
    }

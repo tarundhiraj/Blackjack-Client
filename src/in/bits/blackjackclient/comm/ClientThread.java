@@ -10,7 +10,6 @@ import in.bits.blackjackclient.bean.Type;
 import in.bits.blackjackclient.controller.View;
 import in.bits.blackjackclient.game.Game;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,7 +19,7 @@ import java.util.logging.Logger;
  *
  */
 public class ClientThread implements Runnable{
-    private Client client;
+    private final Client client;
     private Message message;
     private Thread thread;
     private Game game;
@@ -79,7 +78,9 @@ public class ClientThread implements Runnable{
                     //Code to publish result, and that's all the messages the client has to handle really
                     //assume the result comes in the format
                     //name->score,WIN/LOSE
+                    View.getFetchingResult().setVisible(false);
                     View.getResult().setResult(message.getResult());
+                    View.getFetchingResult().dispose();
                  
                 }else if(message.getType().getTypeOfMessage().equalsIgnoreCase("LIST")){
                     View.getGameplay().setUsersList(message.getSender());
