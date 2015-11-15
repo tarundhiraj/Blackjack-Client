@@ -16,6 +16,7 @@ public class ResultPage extends javax.swing.JFrame {
      */
     public ResultPage() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -34,7 +35,7 @@ public class ResultPage extends javax.swing.JFrame {
         resultTable = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(569, 491));
         setResizable(false);
 
