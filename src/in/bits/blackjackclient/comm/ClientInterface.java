@@ -1,5 +1,5 @@
 
-package in.bits.blackjackclient.communication;
+package in.bits.blackjackclient.comm;
 
 import in.bits.blackjackclient.bean.Message;
 

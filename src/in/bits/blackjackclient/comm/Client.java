@@ -1,4 +1,4 @@
-package in.bits.blackjackclient.communication;
+package in.bits.blackjackclient.comm;
 
 import in.bits.blackjackclient.bean.Hand;
 import in.bits.blackjackclient.bean.Message;
@@ -91,5 +91,16 @@ public class Client implements ClientInterface{
         }
     }
     
-//Communication Functions End    
+  
+
+    public Game getGame() {
+        return game;
+    }
+
+    public Hand getHand() {
+        return hand;
+    }
+    
+    
+    
 }

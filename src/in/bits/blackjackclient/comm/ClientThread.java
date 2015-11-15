@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package in.bits.blackjackclient.communication;
+package in.bits.blackjackclient.comm;
 
 import in.bits.blackjackclient.bean.Message;
 import in.bits.blackjackclient.bean.Type;
+import in.bits.blackjackclient.controller.View;
 import in.bits.blackjackclient.game.Game;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -46,6 +48,7 @@ public class ClientThread implements Runnable{
      * @see Message
      * @see Type
      */
+    @Override
     public void run(){
         Message message = null;
         while(true){
@@ -54,19 +57,39 @@ public class ClientThread implements Runnable{
                 message = (Message)client.getIn().readObject();
                 
                 if(message.getType().getTypeOfMessage().equalsIgnoreCase("GAMEBEGIN")){
+                    if(View.getLoading().isActive()){
+                        View.getLoading().setVisible(false);
+                        View.getLoading().dispose();
+                    }else if(View.getWait().isActive()){
+                        View.getWait().setVisible(false);
+                        View.getWait().dispose();
+                    }
+                                        
+                    View.getGameplay().setVisible(true);
+                    
                     game.setPlayingStatus(true);
                     game.getTwoCards();
                 }
                 else if(message.getType().getTypeOfMessage().equalsIgnoreCase("CARD")){
                     game.dealWithCard(message.getCard());
+                    View.getGameplay().setCardStat(message.getCard());
+                    View.getGameplay().setTotal(game.getHand().getValueOfHand());
                 }
                 else if(message.getType().getTypeOfMessage().equalsIgnoreCase("RESULT")){
                     //Code to publish result, and that's all the messages the client has to handle really
+                    //assume the result comes in the format
+                    //name->score,WIN/LOSE
+                    View.getResult().setResult(message.getResult());
+                 
+                }else if(message.getType().getTypeOfMessage().equalsIgnoreCase("LIST")){
+                    View.getGameplay().setUsersList(message.getSender());
+                    //Make sure that server sends the list in the sender field of the message
+                    //separated by commas
+                }else if(message.getType().getTypeOfMessage().equalsIgnoreCase("WAIT")){
+                    View.getWait().setVisible(true);  
                 }
                 
-            } catch (IOException ex) {
-                Logger.getLogger(ClientThread.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
+            } catch (IOException | ClassNotFoundException ex) {
                 Logger.getLogger(ClientThread.class.getName()).log(Level.SEVERE, null, ex);
             }
         }

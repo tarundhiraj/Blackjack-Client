@@ -4,7 +4,7 @@ import in.bits.blackjackclient.bean.Card;
 import in.bits.blackjackclient.bean.Hand;
 import in.bits.blackjackclient.bean.Message;
 import in.bits.blackjackclient.bean.Type;
-import in.bits.blackjackclient.communication.Client;
+import in.bits.blackjackclient.comm.Client;
 
 public class Game {
     
@@ -16,12 +16,16 @@ public class Game {
         this.client = client;
         this.hand = hand;
     }
-    
-    public void setPlayingStatus(boolean val){
-        playing = val;
+
+    public Hand getHand() {
+        return hand;
     }
     
-    public boolean getPlayingStaus(){
+    public void setPlayingStatus(boolean playing){
+        this.playing = playing;
+    }
+    
+    public boolean getPlayingStatus(){
         return playing;
     }
     

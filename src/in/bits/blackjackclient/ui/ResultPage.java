@@ -5,6 +5,13 @@
  */
 package in.bits.blackjackclient.ui;
 
+import in.bits.blackjackclient.bean.Message;
+import in.bits.blackjackclient.controller.View;
+import java.util.HashMap;
+import java.util.Map;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author tarun
@@ -43,6 +50,11 @@ public class ResultPage extends javax.swing.JFrame {
         jLabel1.setText("Blackjack");
 
         playAgain.setText("Play Again");
+        playAgain.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                playAgainActionPerformed(evt);
+            }
+        });
 
         quit.setText("Quit");
         quit.addActionListener(new java.awt.event.ActionListener() {
@@ -126,44 +138,30 @@ public class ResultPage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void quitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitActionPerformed
-        // TODO add your handling code here:
-        System.exit(0);
+        int value = JOptionPane.showConfirmDialog(this, "Do you really want to quit?", "Quit?", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+        
+        if(value == JOptionPane.YES_OPTION){
+            View.getClient().getGame().quitGame();
+            System.exit(0);
+        }
     }//GEN-LAST:event_quitActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ResultPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ResultPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ResultPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ResultPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void playAgainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playAgainActionPerformed
+        View.getClient().getGame().resetGame();
+        View.getClient().sendMessage(new Message(null, View.getClient().getUserName(), in.bits.blackjackclient.bean.Type.JOIN, null, 0, null));
+        
+    }//GEN-LAST:event_playAgainActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ResultPage().setVisible(true);
-            }
-        });
-    }
+   public void setResult(HashMap<String,String> resultMap){
+       DefaultTableModel model = new DefaultTableModel();
+       for(Map.Entry<String,String> entry : resultMap.entrySet()){
+           String col1 = entry.getKey();
+           String temp[] = entry.getValue().split(",");
+           String col2 = temp[0];
+           String col3 = temp[1];
+           model.addRow(new String[]{col1,col2,col3});
+       }
+   }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
