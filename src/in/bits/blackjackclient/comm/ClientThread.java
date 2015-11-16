@@ -80,16 +80,24 @@ public class ClientThread implements Runnable{
                     //Code to publish result, and that's all the messages the client has to handle really
                     //assume the result comes in the format
                     //name->score,WIN/LOSE
+                    game.resetGame();
                     View.getFetchingResult().setVisible(false);
                     View.getResult().setResult(message.getResult());
                     View.getFetchingResult().dispose();
                  
-                }else if(message.getType().getTypeOfMessage().equalsIgnoreCase("LIST")){
+                }
+                else if(message.getType().getTypeOfMessage().equalsIgnoreCase("LIST")){
                     View.getGameplay().setUsersList(message.getSender());
                     //Make sure that server sends the list in the sender field of the message
                     //separated by commas
-                }else if(message.getType().getTypeOfMessage().equalsIgnoreCase("WAIT")){
+                }
+                else if(message.getType().getTypeOfMessage().equalsIgnoreCase("WAIT")){
                     View.getWait().setVisible(true);  
+                }
+                else if(message.getType().getTypeOfMessage().equalsIgnoreCase("RESTART")){
+                    if(View.getWait().isActive()){
+                        client.sendMessage(new Message(null, client.getUserName(), Type.ACCEPT, null, 0, null));
+                    }
                 }
                 
             } catch (IOException | ClassNotFoundException ex) {

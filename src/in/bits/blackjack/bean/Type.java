@@ -10,6 +10,8 @@ public enum Type {
     WAIT("WAIT"),
     RESTART("RESTART"),
     READY("READY"),
+    ACCEPT("ACCEPT"),
+    REJECT("REJECT"),
     JOIN("JOIN"),
     DISCONNECT("DISCONNECT"),
     EXIT("EXIT"),
