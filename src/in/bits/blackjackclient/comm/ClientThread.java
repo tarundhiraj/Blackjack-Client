@@ -103,7 +103,8 @@ public class ClientThread implements Runnable {
                 } else if (message.getType().getTypeOfMessage().equalsIgnoreCase("RESTART")) {
                     if (View.getWait().isActive()) {
                         client.sendMessage(new Message(null, client.getUserName(), Type.ACCEPT, null, 0, null));
-                    }
+                        View.getLoading().setVisible(true);
+                    }   
                 }
 
             } catch (IOException | ClassNotFoundException ex) {
