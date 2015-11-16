@@ -59,6 +59,10 @@ public class Game {
         hand.incrementCards();
         hand.setValueOfHand(card.getValue());
         hand.putInHand(hand.getCardsInHand(), card);
+        
+        if(hand.getValueOfHand() >= 17){
+            fold();
+        }
     }
     
     public void quitGame(){
