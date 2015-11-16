@@ -64,15 +64,6 @@ public class Game {
         
         if(hand.getValueOfHand() >= 17){
             fold();
-            
-            for(Frame frame: Frame.getFrames()){
-                if(frame.isActive()){
-                    frame.setVisible(false);
-                    frame.dispose();
-                }
-            }
-            
-            View.getFetchingResult().setVisible(true);
         }
     }
     

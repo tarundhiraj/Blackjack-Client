@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -65,33 +66,14 @@ public class ResultPage extends javax.swing.JFrame {
         });
 
         resultTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        resultTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Name", "Score", ""
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        DefaultTableModel model = new DefaultTableModel();
+        resultTable.setModel(model);
+        model.addColumn("NAME");
+        model.addColumn("SCORE");
+        model.addColumn("");
         resultTable.setAutoscrolls(false);
         resultTable.setRowHeight(32);
+        resultTable.setRowSelectionAllowed(false);
         jScrollPane1.setViewportView(resultTable);
 
         jLabel2.setFont(new java.awt.Font("Perpetua Titling MT", 1, 12)); // NOI18N
@@ -154,14 +136,16 @@ public class ResultPage extends javax.swing.JFrame {
     }//GEN-LAST:event_playAgainActionPerformed
 
    public void setResult(HashMap<String,Result> resultMap){
-       DefaultTableModel model = new DefaultTableModel();
+       DefaultTableModel model = (DefaultTableModel) resultTable.getModel();
        for(Map.Entry<String,Result> entry : resultMap.entrySet()){
            String col1 = entry.getKey();
            Result result = entry.getValue();
            String col2 = ""+result.getScore();
            String col3 = result.getResult();
-           model.addRow(new String[]{col1,col2,col3});
+           model.addRow(new Object[]{col1,col2,col3});
        }
+       this.revalidate();
+       this.repaint();
    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

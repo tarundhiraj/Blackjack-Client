@@ -24,19 +24,25 @@ public class GameplayPage extends javax.swing.JFrame {
      * Creates new form GameplayPage
      */
     
-    private final HashMap<Suit,String> cardImages;
+    private final HashMap<Suit,String> suitImages;
+    private final HashMap<Integer,String> cardImages;
     public GameplayPage() {
         initComponents();
         setLocationRelativeTo(null);
         GraphicsEnvironment.getLocalGraphicsEnvironment();
-        Font font = new Font("LucidaSans", Font.PLAIN, 40);
+        Font font = new Font("LucidaSans", Font.PLAIN, 28);
         
         output.setFont(font); 
         cardImages = new HashMap<>();
-        cardImages.put(Suit.CLUBS,"\u2663");
-        cardImages.put(Suit.DIAMONDS, "\u2666");
-        cardImages.put(Suit.HEARTS, "\u2665");
-        cardImages.put(Suit.SPADES, "\u2660");
+        suitImages = new HashMap<>();
+        suitImages.put(Suit.CLUBS,"\u2663");
+        suitImages.put(Suit.DIAMONDS, "\u2666");
+        suitImages.put(Suit.HEARTS, "\u2665");
+        suitImages.put(Suit.SPADES, "\u2660");
+        cardImages.put(1, "A");
+        cardImages.put(11, "J");
+        cardImages.put(12, "Q");
+        cardImages.put(13, "K");
     }
 
     /**
@@ -213,9 +219,14 @@ public class GameplayPage extends javax.swing.JFrame {
     
     public void setCardStat(Card card){
         Suit suit= card.getSuit();
-        
-        output.append(card.getCardNumber()+"\t"+cardImages.get(suit)+"\n");
-        
+        if(card.getCardNumber() > 10){
+            output.append(card.getCardNumber()+"   "+cardImages.get(card.getCardNumber())+"   "+suitImages.get(suit)+"\n");
+        }else{
+            output.append(card.getCardNumber()+"          "+suitImages.get(suit)+"\n");
+        }
+        if(View.getClient().getHand().getValueOfHand() > 17){
+            View.getGameplay().showMessage();
+        }
     } 
     
     public void setTotal(int total){
@@ -230,6 +241,13 @@ public class GameplayPage extends javax.swing.JFrame {
             lm.addElement(s);
         }
         onlineUsers.setModel(lm);
+    }
+    
+    public void showMessage(){
+        JOptionPane.showMessageDialog(this, "Value of cards in hand exceeded 17", "Folded", JOptionPane.PLAIN_MESSAGE);
+            this.setVisible(false);
+            this.dispose();
+            View.getFetchingResult().setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

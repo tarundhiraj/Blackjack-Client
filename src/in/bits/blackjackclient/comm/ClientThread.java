@@ -10,6 +10,7 @@ import in.bits.blackjack.bean.Type;
 import in.bits.blackjackclient.controller.View;
 import in.bits.blackjackclient.game.Game;
 import java.awt.Frame;
+import java.awt.Window;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -46,7 +47,10 @@ public class ClientThread implements Runnable {
     }
 
     private void closeOtherFrames() {
-
+         System.gc();
+         for(Window window : Window.getWindows()){
+             window.dispose();
+         }
     }
 
     /**
@@ -67,12 +71,7 @@ public class ClientThread implements Runnable {
                 System.out.println("Message Received:" + message);
                 if (message.getType().getTypeOfMessage().equalsIgnoreCase("GAMEBEGIN")) {
 
-                    for (Frame frame : Frame.getFrames()) {
-                        if (frame.isActive()) {
-                            frame.setVisible(false);
-                            frame.dispose();
-                        }
-                    }
+                    closeOtherFrames();
                     View.getGameplay().setVisible(true);
 
                     game.setPlayingStatus(true);
@@ -86,12 +85,12 @@ public class ClientThread implements Runnable {
                     //assume the result comes in the format
                     //name->score,WIN/LOSE
                     game.resetGame();
-                    for (Frame frame : Frame.getFrames()) {
-                        if (frame.isActive()) {
-                            frame.setVisible(false);
-                            frame.dispose();
-                        }
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(ClientThread.class.getName()).log(Level.SEVERE, null, ex);
                     }
+                    closeOtherFrames();
                     View.getResult().setVisible(true);
                     View.getResult().setResult(message.getResult());
 
