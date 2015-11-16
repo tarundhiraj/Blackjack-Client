@@ -5,6 +5,8 @@ import in.bits.blackjack.bean.Hand;
 import in.bits.blackjack.bean.Message;
 import in.bits.blackjack.bean.Type;
 import in.bits.blackjackclient.comm.Client;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Game {
     
@@ -31,6 +33,11 @@ public class Game {
     
     public void getTwoCards(){
         client.sendMessage(new Message(null, client.getUserName(), Type.HIT, null, 0, null));
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+        }
         client.sendMessage(new Message(null, client.getUserName(), Type.HIT, null, 0, null));
     }
     
@@ -40,6 +47,11 @@ public class Game {
     
     public void fold(){
         client.sendMessage(new Message(null, client.getUserName(), Type.FOLD, null, 0, null));
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+        }
         client.sendMessage(new Message(null, client.getUserName(), Type.FOREVAL, null, hand.getValueOfHand(), null));
     }
     
