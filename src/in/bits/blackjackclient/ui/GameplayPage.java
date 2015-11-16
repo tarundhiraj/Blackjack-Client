@@ -8,6 +8,8 @@ package in.bits.blackjackclient.ui;
 import in.bits.blackjack.bean.Suit;
 import in.bits.blackjack.bean.Card;
 import in.bits.blackjackclient.controller.View;
+import java.awt.Font;
+import java.awt.GraphicsEnvironment;
 import java.util.HashMap;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -26,11 +28,15 @@ public class GameplayPage extends javax.swing.JFrame {
     public GameplayPage() {
         initComponents();
         setLocationRelativeTo(null);
+        GraphicsEnvironment.getLocalGraphicsEnvironment();
+        Font font = new Font("LucidaSans", Font.PLAIN, 40);
+        
+        output.setFont(font); 
         cardImages = new HashMap<>();
-        cardImages.put(Suit.CLUBS, "♣");
-        cardImages.put(Suit.DIAMONDS, "♦");
-        cardImages.put(Suit.HEARTS, "♥");
-        cardImages.put(Suit.SPADES, "♠");
+        cardImages.put(Suit.CLUBS,"\u2663");
+        cardImages.put(Suit.DIAMONDS, "\u2666");
+        cardImages.put(Suit.HEARTS, "\u2665");
+        cardImages.put(Suit.SPADES, "\u2660");
     }
 
     /**
@@ -83,11 +89,6 @@ public class GameplayPage extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        onlineUsers.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane2.setViewportView(onlineUsers);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -212,6 +213,7 @@ public class GameplayPage extends javax.swing.JFrame {
     
     public void setCardStat(Card card){
         Suit suit= card.getSuit();
+        
         output.append(card.getCardNumber()+"\t"+cardImages.get(suit)+"\n");
         
     } 

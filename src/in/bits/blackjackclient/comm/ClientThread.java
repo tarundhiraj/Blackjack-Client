@@ -9,9 +9,11 @@ import in.bits.blackjack.bean.Message;
 import in.bits.blackjack.bean.Type;
 import in.bits.blackjackclient.controller.View;
 import in.bits.blackjackclient.game.Game;
+import java.awt.Frame;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 
 /**<strong>ClientThread</strong> handles the connection of one client connection.
  * Client Thread is responsible for all the communication between Server and the 
@@ -56,12 +58,12 @@ public class ClientThread implements Runnable{
                 message = (Message)client.getIn().readObject();
                 System.out.println("Message Received:"+message);
                 if(message.getType().getTypeOfMessage().equalsIgnoreCase("GAMEBEGIN")){
-                    if(View.getLoading().isActive()){
-                        View.getLoading().setVisible(false);
-                        View.getLoading().dispose();
-                    }else if(View.getWait().isActive()){
-                        View.getWait().setVisible(false);
-                        View.getWait().dispose();
+                    
+                    for(Frame frame: Frame.getFrames()){
+                        if(frame.isActive()){
+                            frame.setVisible(false);
+                            frame.dispose();
+                        }
                     }
                                         
                     View.getGameplay().setVisible(true);
