@@ -8,6 +8,7 @@ public enum Type {
     GAMEBEGIN("GAMEBEGIN"),
     ISDEALER("ISDEALER"),
     WAIT("WAIT"),
+    RESTART("RESTART"),
     READY("READY"),
     JOIN("JOIN"),
     DISCONNECT("DISCONNECT"),
