@@ -49,7 +49,7 @@ public class ClientThread implements Runnable{
      */
     @Override
     public void run(){
-        Message message = null;
+        Message message;
         while(true){
             try {
                 
@@ -91,7 +91,7 @@ public class ClientThread implements Runnable{
                 }
                 
             } catch (IOException | ClassNotFoundException ex) {
-                Logger.getLogger(ClientThread.class.getName()).log(Level.SEVERE, null, ex);
+                //Logger.getLogger(ClientThread.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

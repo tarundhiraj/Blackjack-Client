@@ -1,8 +1,9 @@
 package in.bits.blackjackclient.bean;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class Message {
+public class Message implements Serializable{
     private Card card;
     private String sender;
     private Type type;
