@@ -1,9 +1,9 @@
 package in.bits.blackjackclient.game;
 
-import in.bits.blackjackclient.bean.Card;
-import in.bits.blackjackclient.bean.Hand;
-import in.bits.blackjackclient.bean.Message;
-import in.bits.blackjackclient.bean.Type;
+import in.bits.blackjack.bean.Card;
+import in.bits.blackjack.bean.Hand;
+import in.bits.blackjack.bean.Message;
+import in.bits.blackjack.bean.Type;
 import in.bits.blackjackclient.comm.Client;
 
 public class Game {

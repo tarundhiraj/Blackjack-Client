@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package in.bits.blackjackclient.bean;
+package in.bits.blackjack.bean;
 
 /**
  *

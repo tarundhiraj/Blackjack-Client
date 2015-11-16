@@ -67,11 +67,4 @@ public class View {
     public static WaitPage getWait() {
         return wait;
     }
-    
-    
-    
-    
-    
-        
-    
 }

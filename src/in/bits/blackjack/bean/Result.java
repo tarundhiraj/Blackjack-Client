@@ -3,10 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package in.bits.blackjackclient.bean;
+package in.bits.blackjack.bean;
 
-public class Result {
+import java.io.Serializable;
+
+public class Result implements Serializable{
     
+    public static final long serialVersionUID = 39L;
     private int score;
     private String result;
     

@@ -5,8 +5,8 @@
  */
 package in.bits.blackjackclient.comm;
 
-import in.bits.blackjackclient.bean.Message;
-import in.bits.blackjackclient.bean.Type;
+import in.bits.blackjack.bean.Message;
+import in.bits.blackjack.bean.Type;
 import in.bits.blackjackclient.controller.View;
 import in.bits.blackjackclient.game.Game;
 import java.io.IOException;
@@ -54,7 +54,7 @@ public class ClientThread implements Runnable{
             try {
                 
                 message = (Message)client.getIn().readObject();
-                
+                System.out.println("Message Received:"+message);
                 if(message.getType().getTypeOfMessage().equalsIgnoreCase("GAMEBEGIN")){
                     if(View.getLoading().isActive()){
                         View.getLoading().setVisible(false);
@@ -91,7 +91,7 @@ public class ClientThread implements Runnable{
                 }
                 
             } catch (IOException | ClassNotFoundException ex) {
-                //Logger.getLogger(ClientThread.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ClientThread.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

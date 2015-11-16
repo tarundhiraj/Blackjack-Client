@@ -12,7 +12,7 @@ import in.bits.blackjackclient.comm.Client;
  * @author tarun
  */
 public class GameController {
-  
+    
     private View view;
     
     public GameController(View view){

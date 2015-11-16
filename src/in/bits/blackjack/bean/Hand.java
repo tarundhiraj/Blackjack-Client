@@ -1,4 +1,4 @@
-package in.bits.blackjackclient.bean;
+package in.bits.blackjack.bean;
 
 import java.util.HashMap;
 

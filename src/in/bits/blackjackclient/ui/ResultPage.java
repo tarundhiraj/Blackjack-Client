@@ -5,8 +5,8 @@
  */
 package in.bits.blackjackclient.ui;
 
-import in.bits.blackjackclient.bean.Message;
-import in.bits.blackjackclient.bean.Result;
+import in.bits.blackjack.bean.Message;
+import in.bits.blackjack.bean.Result;
 import in.bits.blackjackclient.controller.View;
 import java.util.HashMap;
 import java.util.Map;
@@ -149,7 +149,7 @@ public class ResultPage extends javax.swing.JFrame {
 
     private void playAgainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playAgainActionPerformed
         View.getClient().getGame().resetGame();
-        View.getClient().sendMessage(new Message(null, View.getClient().getUserName(), in.bits.blackjackclient.bean.Type.JOIN, null, 0, null));
+        View.getClient().sendMessage(new Message(null, View.getClient().getUserName(), in.bits.blackjack.bean.Type.JOIN, null, 0, null));
         
     }//GEN-LAST:event_playAgainActionPerformed
 

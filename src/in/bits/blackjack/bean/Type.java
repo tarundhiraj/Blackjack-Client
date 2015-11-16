@@ -1,4 +1,4 @@
-package in.bits.blackjackclient.bean;
+package in.bits.blackjack.bean;
 
 public enum Type {
     HIT("HIT"),

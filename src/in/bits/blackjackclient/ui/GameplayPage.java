@@ -5,8 +5,8 @@
  */
 package in.bits.blackjackclient.ui;
 
-import in.bits.blackjackclient.bean.Suit;
-import in.bits.blackjackclient.bean.Card;
+import in.bits.blackjack.bean.Suit;
+import in.bits.blackjack.bean.Card;
 import in.bits.blackjackclient.controller.View;
 import java.util.HashMap;
 import javax.swing.DefaultListModel;

@@ -1,7 +1,7 @@
 package in.bits.blackjackclient.comm;
 
-import in.bits.blackjackclient.bean.Hand;
-import in.bits.blackjackclient.bean.Message;
+import in.bits.blackjack.bean.Hand;
+import in.bits.blackjack.bean.Message;
 import in.bits.blackjackclient.game.Game;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -85,6 +85,7 @@ public class Client implements ClientInterface{
     @Override
     public void sendMessage(Message message) {
         try {
+            System.out.println("Message sent:"+message);
             out.writeObject(message);
         } catch (IOException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
