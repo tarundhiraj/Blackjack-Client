@@ -5,6 +5,8 @@ import in.bits.blackjack.bean.Hand;
 import in.bits.blackjack.bean.Message;
 import in.bits.blackjack.bean.Type;
 import in.bits.blackjackclient.comm.Client;
+import in.bits.blackjackclient.controller.View;
+import java.awt.Frame;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -62,6 +64,15 @@ public class Game {
         
         if(hand.getValueOfHand() >= 17){
             fold();
+            
+            for(Frame frame: Frame.getFrames()){
+                if(frame.isActive()){
+                    frame.setVisible(false);
+                    frame.dispose();
+                }
+            }
+            
+            View.getFetchingResult().setVisible(true);
         }
     }
     
