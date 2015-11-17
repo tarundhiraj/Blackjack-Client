@@ -131,7 +131,7 @@ public class ResultPage extends javax.swing.JFrame {
 
     private void playAgainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playAgainActionPerformed
         View.getClient().getGame().resetGame();
-        View.getClient().sendMessage(new Message(null, View.getClient().getUserName(), in.bits.blackjack.bean.Type.JOIN, null, 0, null));
+        View.getClient().sendMessage(new Message(null, View.getClient().getUserName(), in.bits.blackjack.bean.Type.ACCEPT, null, 0, null));
         
     }//GEN-LAST:event_playAgainActionPerformed
 
