@@ -121,9 +121,9 @@ public class ResultPage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void quitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitActionPerformed
-        int value = JOptionPane.showConfirmDialog(this, "Do you really want to quit?", "Quit?", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
-        
-        if(value == JOptionPane.YES_OPTION){
+        int value = JOptionPane.showConfirmDialog(this, "Do you really want to quit?", "Quit?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+        if (value == JOptionPane.YES_OPTION) {
             View.getClient().getGame().quitGame();
             System.exit(0);
         }
@@ -135,20 +135,31 @@ public class ResultPage extends javax.swing.JFrame {
         View.getResult().dispose();
         System.out.println("Result Page disposed!!");
         View.getLoading().setVisible(true);
+        View.getGameplay().resetForm();
+        View.getResult().resetForm();
     }//GEN-LAST:event_playAgainActionPerformed
 
-   public void setResult(HashMap<String,Result> resultMap){
-       DefaultTableModel model = (DefaultTableModel) resultTable.getModel();
-       for(Map.Entry<String,Result> entry : resultMap.entrySet()){
-           String col1 = entry.getKey();
-           Result result = entry.getValue();
-           String col2 = ""+result.getScore();
-           String col3 = result.getResult();
-           model.addRow(new Object[]{col1,col2,col3});
-       }
-       this.revalidate();
-       this.repaint();
-   }
+    public void setResult(HashMap<String, Result> resultMap) {
+        DefaultTableModel model = (DefaultTableModel) resultTable.getModel();
+        for (Map.Entry<String, Result> entry : resultMap.entrySet()) {
+            String col1 = entry.getKey();
+            Result result = entry.getValue();
+            String col2 = "" + result.getScore();
+            String col3 = result.getResult();
+            model.addRow(new Object[]{col1, col2, col3});
+        }
+        this.revalidate();
+        this.repaint();
+    }
+
+    public void resetForm() {
+        DefaultTableModel model = (DefaultTableModel) resultTable.getModel();
+        int rows = model.getRowCount();
+        for (int i = rows - 1; i >= 0; i--) {
+            model.removeRow(i);
+        }
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

@@ -249,6 +249,10 @@ public class GameplayPage extends javax.swing.JFrame {
             this.dispose();
             View.getFetchingResult().setVisible(true);
     }
+    
+    public void resetForm(){
+        output.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton foldButton;
