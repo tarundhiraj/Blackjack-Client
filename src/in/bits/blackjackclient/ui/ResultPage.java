@@ -132,7 +132,9 @@ public class ResultPage extends javax.swing.JFrame {
     private void playAgainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playAgainActionPerformed
         View.getClient().getGame().resetGame();
         View.getClient().sendMessage(new Message(null, View.getClient().getUserName(), in.bits.blackjack.bean.Type.ACCEPT, null, 0, null));
-        
+        View.getResult().dispose();
+        System.out.println("Result Page disposed!!");
+        View.getLoading().setVisible(true);
     }//GEN-LAST:event_playAgainActionPerformed
 
    public void setResult(HashMap<String,Result> resultMap){
